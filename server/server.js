@@ -8,7 +8,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "https://your-vercel-app.vercel.app" // replace later
+  "https://webrtc-video-chat-app-lyart.vercel.app/" 
 ];
 
 app.use(

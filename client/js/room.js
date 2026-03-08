@@ -1,4 +1,4 @@
-const socket = io("YOUR_RENDER_BACKEND_URL", {
+const socket = io("https://webrtc-video-chat-app-x300.onrender.com", {
   transports: ["websocket", "polling"]
 });
 
