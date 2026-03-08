@@ -1,0 +1,22 @@
+{
+  "name": "webrtc-video-chat",
+  "version": "1.0.0",
+  "description": "Real-time video conferencing app with WebRTC, Socket.IO, chat, mute and camera toggle",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "webrtc",
+    "socket.io",
+    "video-chat",
+    "conference"
+  ],
+  "author": "Kavindu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebRTC Video Conference</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Real-Time Video Conferencing App</h1>
+      <div class="join-box">
+        <input type="text" id="nameInput" placeholder="Your name" />
+        <input type="text" id="roomInput" placeholder="Room ID" />
+        <button id="joinBtn">Join Room</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="video-section">
+        <div class="controls">
+          <button id="muteBtn">Mute</button>
+          <button id="cameraBtn">Camera Off</button>
+          <button id="leaveBtn">Leave</button>
+        </div>
+
+        <div id="status" class="status">Not connected</div>
+
+        <div id="videoGrid" class="video-grid">
+          <div class="video-card">
+            <video id="localVideo" autoplay playsinline muted></video>
+            <p>You</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="chat-section">
+        <h2>Chat</h2>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Type a message..." />
+          <button id="sendBtn">Send</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
