@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meeting Room</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <div class="main-area">
+      <div class="top-bar">
+        <div>
+          <h2>Room: <span id="roomCodeText"></span></h2>
+          <p>Share this room code with others</p>
+        </div>
+        <button id="copyRoomBtn">Copy Room Code</button>
+      </div>
+
+      <div id="videoGrid" class="video-grid"></div>
+
+      <div class="controls">
+        <button id="toggleMicBtn">Mute</button>
+        <button id="toggleCamBtn">Stop Camera</button>
+        <button id="leaveBtn" class="danger">Leave</button>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="chat-header">
+        <h3>Chat</h3>
+      </div>
+
+      <div id="chatMessages" class="chat-messages"></div>
+
+      <div class="emoji-row">
+        <button id="emojiToggleBtn">😊</button>
+        <div id="emojiPicker" class="emoji-picker hidden">
+          <span class="emoji">😀</span>
+          <span class="emoji">😂</span>
+          <span class="emoji">😍</span>
+          <span class="emoji">🔥</span>
+          <span class="emoji">👍</span>
+          <span class="emoji">🎉</span>
+          <span class="emoji">😎</span>
+          <span class="emoji">❤️</span>
+          <span class="emoji">🙌</span>
+          <span class="emoji">😢</span>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button id="sendBtn">Send</button>
+      </div>
+
+      <div class="file-share-area">
+        <input type="file" id="fileInput" />
+        <button id="sendFileBtn">Send File</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script src="./js/room.js"></script>
+</body>
+</html>
