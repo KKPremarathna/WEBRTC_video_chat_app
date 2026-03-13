@@ -89,7 +89,8 @@ async function init() {
     console.log(`[INIT] Media ready, joining room: ${roomId}`);
     socket.emit("join-room", { roomId, userName });
   } catch (error) {
-    console.error("Media error:", error);
+    console.error("[INIT] Media error:", error);
+    alert("Could not access camera/microphone. Please ensure you have given permissions and are using HTTPS.");
     // Even if media fails, join the room so chat/file sharing might still work
     socket.emit("join-room", { roomId, userName });
   }
@@ -125,12 +126,13 @@ function addVideoStream(id, stream, label, isLocal = false) {
   card.id = `card-${id}`;
 
   const video = document.createElement("video");
-  video.autoplay = true;
-  video.playsInline = true;
+  video.setAttribute("autoplay", "");
+  video.setAttribute("playsinline", "");
   video.srcObject = stream;
   
   if (isLocal) {
     video.muted = true;
+    video.setAttribute("muted", "");
     video.style.transform = "scaleX(-1)"; 
   }
 

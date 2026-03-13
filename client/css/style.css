@@ -241,6 +241,7 @@ input[type="text"]:focus {
 .room-layout {
   display: flex;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
   background: var(--bg-dark);
   overflow: hidden;
 }
@@ -568,34 +569,47 @@ input[type="text"]:focus {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .room-header {
+    top: 8px; left: 8px; right: 8px;
+    padding: 6px 12px;
+    justify-content: space-between;
+    width: auto;
+  }
+  .room-title { font-size: 12px; }
+  .room-info { gap: 8px; }
+  .btn-icon-text { padding: 6px 10px; font-size: 12px; }
+
   .bottom-bar { 
-    min-width: 95%; 
-    width: 95%; 
-    padding: 8px 12px; 
-    bottom: 12px;
-    border-radius: var(--radius-lg); /* Less rounded for better screen usage */
+    min-width: 96%; 
+    width: 96%; 
+    padding: 6px 10px; 
+    bottom: 10px;
+    border-radius: 20px;
+    gap: 4px;
   }
-  .controls-left a, .controls-right { width: auto; }
-  .control-btn span { display: none; } /* Hide labels on mobile */
-  .control-btn.share-btn { display: none !important; } /* Hide screen share on mobile */
+  .controls-left, .controls-right { width: auto; flex: 0; }
+  .controls-center { flex: 1; gap: 6px; }
+  .control-btn span { display: none; }
   .control-btn .icon-wrapper {
-    width: 48px; /* Slightly larger for touch */
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
-  .controls-center { gap: 8px; }
+  .control-btn.leave-btn .icon-wrapper { width: 50px; }
+
+  .right-sidebar { position: absolute; right: 0; top: 0; height: 100%; width: 100%; margin: 0; z-index: 1000; background: var(--bg-dark); }
   
-  .right-sidebar { position: absolute; right: 0; top: 0; height: 100vh; margin: 0; z-index: 1000; background: var(--bg-dark); }
-  
-  /* Portrait video grid optimization */
   .video-card {
     width: 100% !important;
-    aspect-ratio: 1/1; /* Square is better for mixed portrait/landscape on mobile */
+    aspect-ratio: 4/3; /* Better for mobile cameras than 1/1 square */
+    max-height: 40vh;
   }
   .video-grid {
-    padding-top: 80px;
-    padding-bottom: 100px;
+    padding-top: 70px; /* Reduced to fit smaller header */
+    padding-bottom: 90px;
     flex-direction: column;
     flex-wrap: nowrap;
     overflow-y: auto;
+    gap: 12px;
+    align-content: stretch;
   }
 }
