@@ -1,5 +1,7 @@
-// Connect to local server for development
-const SIGNALING_SERVER = "http://localhost:3000";
+// Use production signaling server if not on localhost
+const SIGNALING_SERVER = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://localhost:3000"
+  : "https://webrtc-video-chat-app-x300.onrender.com";
 
 const socket = io(SIGNALING_SERVER, {
   transports: ["websocket", "polling"]

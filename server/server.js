@@ -9,8 +9,9 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "https://webrtc-video-chat-app-lyart.vercel.app" 
-];
+  "https://webrtc-video-chat-app-lyart.vercel.app",
+  process.env.CLIENT_URL // Dynamic origin from environment variable
+].filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
