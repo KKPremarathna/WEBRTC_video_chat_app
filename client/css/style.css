@@ -568,8 +568,34 @@ input[type="text"]:focus {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .bottom-bar { min-width: 90%; width: 90%; padding: 10px 16px; }
+  .bottom-bar { 
+    min-width: 95%; 
+    width: 95%; 
+    padding: 8px 12px; 
+    bottom: 12px;
+    border-radius: var(--radius-lg); /* Less rounded for better screen usage */
+  }
   .controls-left a, .controls-right { width: auto; }
   .control-btn span { display: none; } /* Hide labels on mobile */
+  .control-btn.share-btn { display: none !important; } /* Hide screen share on mobile */
+  .control-btn .icon-wrapper {
+    width: 48px; /* Slightly larger for touch */
+    height: 48px;
+  }
+  .controls-center { gap: 8px; }
+  
   .right-sidebar { position: absolute; right: 0; top: 0; height: 100vh; margin: 0; z-index: 1000; background: var(--bg-dark); }
+  
+  /* Portrait video grid optimization */
+  .video-card {
+    width: 100% !important;
+    aspect-ratio: 1/1; /* Square is better for mixed portrait/landscape on mobile */
+  }
+  .video-grid {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+  }
 }

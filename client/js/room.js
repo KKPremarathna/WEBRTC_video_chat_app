@@ -58,9 +58,20 @@ setInterval(updateTime, 1000);
 const rtcConfig = {
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
-    { urls: "stun:stun1.l.google.com:19302" }
+    { urls: "stun:stun1.l.google.com:19302" },
+    { urls: "stun:stun2.l.google.com:19302" },
+    { urls: "stun:stun3.l.google.com:19302" },
+    { urls: "stun:stun4.l.google.com:19302" },
+    { urls: "stun:stun.services.mozilla.com" }
   ]
 };
+
+// Mobile Check
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (isMobile) {
+  shareScreenBtn.classList.add("hidden");
+  console.log("[INIT] Mobile detected, hiding screen share.");
+}
 
 async function init() {
   console.log(`[INIT] Initializing for room: ${roomId}`);
