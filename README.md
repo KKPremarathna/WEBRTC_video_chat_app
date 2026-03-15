@@ -1,5 +1,4 @@
-# # MeetLite WebRTC App
-
+# MeetLite WebRTC App
 
 Professional WebRTC video conferencing with glassmorphism UI.
 
@@ -26,6 +25,15 @@ Then open `http://localhost:5500` in your browser.
 - Screen Sharing
 - In-call Chat & File Sharing
 - Responsive Video Grid
+
+### Deployment (NAT Traversal)
+If your app works locally but video doesn't show when users are on different networks (e.g., one on Wi-Fi, one on 4G), it is likely due to NAT/Firewall issues.
+
+To fix this, you need to add a **TURN Server** to the `rtcConfig` in `client/js/room.js`.
+- You can host your own using **Coturn**.
+- Or use a managed service like **Twilio** or **Xirsys**.
+
+The `rtcConfig` in `client/js/room.js` has a placeholder for where to add your TURN server credentials.
 
 ## Deployment
 

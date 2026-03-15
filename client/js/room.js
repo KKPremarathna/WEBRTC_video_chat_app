@@ -62,7 +62,16 @@ const rtcConfig = {
     { urls: "stun:stun2.l.google.com:19302" },
     { urls: "stun:stun3.l.google.com:19302" },
     { urls: "stun:stun4.l.google.com:19302" },
-    { urls: "stun:stun.services.mozilla.com" }
+    { urls: "stun:stun.services.mozilla.com" },
+    // IMPORTANT: For connections work across different networks (e.g., 4G to Wi-Fi),
+    // you MUST add a TURN server here. Examples: Coturn, Twilio, or Xirsys.
+    /*
+    {
+      urls: "turn:your-turn-server.com:3478",
+      username: "your-username",
+      credential: "your-password"
+    }
+    */
   ]
 };
 
@@ -159,16 +168,24 @@ function removeVideoStream(id) {
 function createPeerConnection(targetId, targetName, isInitiator) {
   console.log(`[RTC] Creating connection to ${targetId} (${targetName}), Initiator: ${isInitiator}`);
   
-  if (peers[targetId]) {
+  if (peers[targetId] && peers[targetId].pc) {
     console.warn(`[RTC] Peer ${targetId} already exists, closing old one...`);
-    peers[targetId].pc.close();
+    try {
+      peers[targetId].pc.close();
+    } catch (e) {
+      console.warn(`[RTC] Error closing peer connection for ${targetId}:`, e);
+    }
   }
 
   const pc = new RTCPeerConnection(rtcConfig);
+  
+  // Preserve existing candidatesBuffer if it exists (for candidates received before PC creation)
+  const existingBuffer = (peers[targetId] && peers[targetId].candidatesBuffer) || [];
+  
   peers[targetId] = {
     pc,
     name: targetName,
-    candidatesBuffer: [],
+    candidatesBuffer: existingBuffer,
     dataChannel: null
   };
 
